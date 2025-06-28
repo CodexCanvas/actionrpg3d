@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://hu4u45g5avdy"]
+
+[ext_resource type="PackedScene" uid="uid://bdq6ajic6fjrf" path="res://models/mixamo_base.glb" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://ddwemgoaj1gd8" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_g2els")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_g2els")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="mixamo_base" parent="Visuals" instance=ExtResource("1_3vyb7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Camera_mount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera_mount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.9)
