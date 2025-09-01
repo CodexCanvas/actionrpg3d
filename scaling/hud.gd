@@ -1,3 +1,4 @@
+class_name Hud
 extends Control
 
 
@@ -12,6 +13,7 @@ var filter_mode = Viewport.SCALING_3D_MODE_BILINEAR
 @onready var filter_label = $VBoxContainer/Filter
 
 
+
 func _ready():
 	viewport.scaling_3d_mode = Viewport.SCALING_3D_MODE_BILINEAR
 
@@ -20,7 +22,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_page_up"):
 		scale_factor = wrapi(scale_factor + 1, 1, 5)
 		viewport.scaling_3d_scale = 1.0 / scale_factor
-		#scale_label.text = "Scale: %3.0f%%" % (100.0 / scale_factor)
+		scale_label.text = "Scale: %3.0f%%" % (100.0 / scale_factor)
 
 	if event.is_action_pressed("ui_page_down"):
 		filter_mode = wrapi(filter_mode + 1, Viewport.SCALING_3D_MODE_BILINEAR, Viewport.SCALING_3D_MODE_MAX) as Viewport.Scaling3DMode
@@ -32,3 +34,7 @@ func _unhandled_input(event):
 						.replace("Mode", "Mode:")
 						.replace("Fsr", "FSR")
 		)
+
+
+func  update_label(message):
+	Console.text = message

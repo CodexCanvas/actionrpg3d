@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtj6rb2o7uboc"]
+
+[ext_resource type="Script" uid="uid://bn7mcj4febr5d" path="res://console/console.gd" id="1_42x45"]
+
+[node name="Console" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Prueba"
+script = ExtResource("1_42x45")

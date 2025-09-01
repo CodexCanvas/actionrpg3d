@@ -15,6 +15,10 @@ run/main_scene="uid://ohrbenccujps"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PrintManager="*res://console/print_manager.gd"
+
 [input]
 
 ui_left={
