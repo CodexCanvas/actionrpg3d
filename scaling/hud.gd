@@ -16,6 +16,10 @@ var filter_mode = Viewport.SCALING_3D_MODE_BILINEAR
 
 func _ready():
 	viewport.scaling_3d_mode = Viewport.SCALING_3D_MODE_BILINEAR
+	
+	scale_factor = wrapi(scale_factor + 1, 1, 5)
+	viewport.scaling_3d_scale = 1.0 / scale_factor
+	scale_label.text = "Scale: %3.0f%%" % (100.0 / scale_factor)
 
 
 func _unhandled_input(event):
@@ -34,7 +38,3 @@ func _unhandled_input(event):
 						.replace("Mode", "Mode:")
 						.replace("Fsr", "FSR")
 		)
-
-
-func  update_label(message):
-	Console.text = message

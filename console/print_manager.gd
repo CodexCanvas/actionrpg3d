@@ -1,82 +1,45 @@
 extends Node
 
-var console : Console = null
-var message : String = ""
+var console: Console = null
+var log_file: FileAccess = null  # Declare a File variable
 
-func _process(delta: float) -> void:
-	if console == null: return
-	else:
-		_print(message)
+# NOTE: Saving logs to "res://" is not recommended as it becomes read-only in exported projects.
+# For better compatibility, consider changing log_dir to "user://log/".
+var log_dir := "res://console/log/"
+var log_file_path := ""
+
+func _ready():
+	# Ensure the log directory exists.
+	DirAccess.make_dir_recursive_absolute(log_dir)
+
+	# Generate a filename with the current date and time.
+	var dt_string = Time.get_datetime_string_from_system(false).replace(":", "-").replace("T", "_")
+	log_file_path = log_dir.path_join(dt_string + ".log")
+
+	# Initialize the log file
+	log_file = FileAccess.open(log_file_path, FileAccess.WRITE)
+	if log_file == null:
+		var err_msg = "Could not open log file for writing: " + log_file_path
+		push_error(err_msg)
+		# Also print to console in case file logging is the only output
+		print(err_msg)
+		return  # Exit if we can't open the file
+
+	var datetime_string = Time.get_datetime_string_from_system().replace("T", " ")
+	log_file.store_string("--- Session Start: " + datetime_string + " ---\n") # Write a header to the log
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		if log_file:
+			log_file.close()
 
 func _print(message):
+	if console:
 		console.update_label(message)
-		print(message)
+	print(message)
+	_log_to_file(message)  # Call the logging function
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#extends Node
-#@onready var console: Console = $Console
-#
-#
-#
-#func _process(delta: float) -> void:
-	#console = $Console
-	#print(console)
-#
-#func _print(message):
-	#print(message)
-	#
-	#if console == null:
-		#print("ERROR: my_node is NULL right before calling update_label()!")
-		#return  # VERY IMPORTANT: Stop the function if the node is null
-	#console.update_label(message)  # This line is causing the error
-
-#
-#extends Node
-#var console: Console
-#
-#
-#func _ready():
-	#call_deferred("setup_console")
-	#
-#
-#func _process(delta: float) -> void:
-	#console = $console
-	#print(console)
-#
-#func setup_console():
-	##console = 
-	#console = get_node("World/Player/Console") # Replace with the correct path
-#
-	#if console == null:
-		#print("Console node not found! Check the path.")
-		#return
-#
-#func _print(message):
-	#print(message)
-	#
-#
-	#if console == null:
-		#print("ERROR: console is NULL right before calling update_label()!")
-		#return
-#
-	#console.update_label(message)
+func _log_to_file(message):
+	if log_file:
+		var time_string = Time.get_time_string_from_system()
+		log_file.store_string(time_string + " " + message + "\n")  # Add a timestamp to the message

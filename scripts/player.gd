@@ -34,11 +34,11 @@ func _physics_process(delta: float) -> void:
 		is_locked = false
 
 	if Input.is_action_pressed("kick"):
-		p("KICK!")
 		
 		if animation_player.current_animation != "kick":
 			animation_player.play("kick")
 			is_locked = true
+		p("KICK!")
 	
 	if Input.is_action_pressed("run"):
 		SPEED = running_speed
@@ -81,4 +81,4 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func p(message):
-	PrintManager.message = message
+	PrintManager._print(message)
