@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ohrbenccujps"]
+[gd_scene load_steps=14 format=3 uid="uid://ohrbenccujps"]
 
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://textures/grids/Dark/texture_05.png" id="1_uds71"]
 [ext_resource type="Texture2D" uid="uid://cvvwuxrt0xnbi" path="res://textures/grids/Green/texture_13.png" id="2_iu4sv"]
@@ -26,11 +26,20 @@ fog_density = 0.005
 albedo_texture = ExtResource("1_uds71")
 uv1_triplanar = true
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jyhfs"]
+friction = 0.1
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n1be"]
 albedo_texture = ExtResource("2_iu4sv")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jyhfs"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1kd2"]
 albedo_texture = ExtResource("3_d4ksw")
+uv1_triplanar = true
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jyhfs"]
+data = PackedVector3Array(-1, -1, 1, -1, -1, -1, -1, 1, -1, 1, -1, -1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1)
 
 [node name="world" type="Node3D"]
 
@@ -41,23 +50,42 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d4ksw")
 
-[node name="map" type="Node3D" parent="."]
+[node name="Map" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
-[node name="floor" type="CSGBox3D" parent="map"]
+[node name="Floor" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.37444, 0)
 material_override = SubResource("StandardMaterial3D_41f5y")
 use_collision = true
+collision_layer = 16
+collision_mask = 257
 size = Vector3(1000, 1, 1000)
 
-[node name="box" type="CSGBox3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59698, -1.35342, -0.357668)
+[node name="RigidBody3D" type="RigidBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171292, -0.98382, -4.76349)
+collision_layer = 256
+collision_mask = 4113
+physics_material_override = SubResource("PhysicsMaterial_jyhfs")
+freeze_mode = 1
+
+[node name="Box" type="CSGBox3D" parent="Map/RigidBody3D"]
 material_override = SubResource("StandardMaterial3D_0n1be")
 
-[node name="box2" type="CSGBox3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2084, -0.868157, -0.357668)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/RigidBody3D"]
+shape = SubResource("BoxShape3D_jyhfs")
+
+[node name="Wall" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 10, -2.2084, -0.868157, -0.357668)
 material_override = SubResource("StandardMaterial3D_q1kd2")
 size = Vector3(2, 2, 2)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Wall"]
+collision_layer = 4096
+collision_mask = 257
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Map/Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jyhfs")
+
 [node name="Player" parent="." instance=ExtResource("4_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+disable_mode = 2

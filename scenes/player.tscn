@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://hu4u45g5avdy"]
+[gd_scene load_steps=17 format=4 uid="uid://hu4u45g5avdy"]
 
 [ext_resource type="Script" uid="uid://ddwemgoaj1gd8" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://c5uc5vwuqvck5" path="res://scaling/hud.tscn" id="2_g2els"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g2els"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 
@@ -3445,7 +3447,20 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 4368
+collision_priority = 2.0
 script = ExtResource("1_g2els")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0871257, -0.012343)
+disable_mode = 1
+collision_mask = 4369
+mass = 10.0
+gravity_scale = 3.839
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13239, 0)
+shape = SubResource("CylinderShape3D_g2els")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -3486,7 +3501,7 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(0.994696, -0.102851, 0.00115195, 0.102819, 0.993943, -0.0388057, 0.00284624, 0.0387183, 0.999246, -9.53675e-07, 9.32208, 1.54789e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(-9.53675e-07, 9.32208, 1.54789e-07)
-bones/3/rotation = Quaternion(0.0194104, -0.000424214, 0.0514955, 0.998484)
+bones/3/rotation = Quaternion(0.0194104, -0.000424215, 0.0514955, 0.998485)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "mixamorig_Neck"
 bones/4/parent = 3
@@ -3570,7 +3585,7 @@ bones/15/parent = 10
 bones/15/rest = Transform3D(0.996661, -0.081486, 0.00524356, 0.0814406, 0.987352, -0.136029, 0.00590722, 0.136002, 0.990691, 2.25984, 9.10828, 0.517839)
 bones/15/enabled = true
 bones/15/position = Vector3(2.25984, 9.10828, 0.517839)
-bones/15/rotation = Quaternion(0.0682238, -0.000166442, 0.0408611, 0.996833)
+bones/15/rotation = Quaternion(0.0682238, -0.000166441, 0.040861, 0.996833)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "mixamorig_RightHandIndex2"
 bones/16/parent = 15
@@ -3654,7 +3669,7 @@ bones/27/parent = 10
 bones/27/rest = Transform3D(0.956572, -0.278053, 0.0875026, 0.276131, 0.768184, -0.57762, 0.0933906, 0.576697, 0.811602, -3.80628, 8.07668, 0.48668)
 bones/27/enabled = true
 bones/27/position = Vector3(-3.80628, 8.07668, 0.48668)
-bones/27/rotation = Quaternion(0.306914, -0.00156552, 0.147348, 0.94026)
+bones/27/rotation = Quaternion(0.306914, -0.0015655, 0.147348, 0.940261)
 bones/27/scale = Vector3(1, 1, 1)
 bones/28/name = "mixamorig_RightHandPinky2"
 bones/28/parent = 27
@@ -3780,7 +3795,7 @@ bones/45/parent = 44
 bones/45/rest = Transform3D(0.999658, 0.026023, -0.0026112, -0.0259839, 0.976849, -0.212347, -0.00297515, 0.212342, 0.977191, -8.80951e-07, 2.95001, -9.617e-06)
 bones/45/enabled = true
 bones/45/position = Vector3(-8.80951e-07, 2.95001, -9.617e-06)
-bones/45/rotation = Quaternion(0.106792, 9.15183e-05, -0.0130776, 0.994195)
+bones/45/rotation = Quaternion(0.106792, 9.15184e-05, -0.0130776, 0.994195)
 bones/45/scale = Vector3(1, 1, 1)
 bones/46/name = "mixamorig_LeftHandMiddle4"
 bones/46/parent = 45
@@ -3871,7 +3886,7 @@ bones/58/parent = 57
 bones/58/rest = Transform3D(1, 4.57682e-07, -1.68429e-07, -4.59554e-07, 0.768722, -0.639583, -1.63251e-07, 0.639583, 0.768722, -3.96734e-08, 13.8169, 6.94854e-07)
 bones/58/enabled = true
 bones/58/position = Vector3(-3.96734e-08, 13.8169, 6.94854e-07)
-bones/58/rotation = Quaternion(0.340057, -7.99456e-11, -2.43376e-07, 0.940405)
+bones/58/rotation = Quaternion(0.340057, -7.99575e-11, -2.43376e-07, 0.940405)
 bones/58/scale = Vector3(1, 1, 1)
 bones/59/name = "mixamorig_RightToe_End"
 bones/59/parent = 58
@@ -3931,9 +3946,10 @@ libraries = {
 playback_default_blend_time = 0.4
 
 [node name="Camera_mount" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.87418, -0.167508)
 
 [node name="Camera3D" type="Camera3D" parent="Camera_mount"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.9)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.24677, 0.137228)
+fov = 100.0
 
 [node name="HUD" parent="Camera_mount" instance=ExtResource("2_g2els")]
