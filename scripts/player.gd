@@ -17,7 +17,7 @@ var running: bool = false
 var is_locked: bool = false
 
 @export var sens_horizontal: float = 0.4
-@export var sens_vertical: float = 0.2
+@export var sens_vertical: float = 0.1
 
 
 func _ready():
@@ -28,6 +28,8 @@ func _input(event):
 		rotate_y(deg_to_rad(-event.relative.x * sens_horizontal))
 		visuals.rotate_y(deg_to_rad(event.relative.x * sens_horizontal) ) # Keeps the model still
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
+		camera_mount.rotation.x = clamp(camera_mount.rotation.x, deg_to_rad(-180), deg_to_rad(0))
+		p("Camera X (deg): " + str(rad_to_deg(camera_mount.rotation.x)))
 
 func _physics_process(delta: float) -> void:
 	if !animation_player.is_playing():
