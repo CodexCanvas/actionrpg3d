@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eh0aelvfvc7o"
-path.s3tc="res://.godot/imported/checker.png-d334a8ae07de292fd4162f184b9dd7bc.s3tc.ctex"
+uid="uid://1ausroeemwlg"
+path.s3tc="res://.godot/imported/godette_0.png-f2ed9bb1acb2b8b5cd46d0aa0cb9bbe1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "4925efb04de4932c9a2cd83213f6e9e4"
+}
 
 [deps]
 
-source_file="res://textures/checker.png"
-dest_files=["res://.godot/imported/checker.png-d334a8ae07de292fd4162f184b9dd7bc.s3tc.ctex"]
+source_file="res://player/godette_0.png"
+dest_files=["res://.godot/imported/godette_0.png-f2ed9bb1acb2b8b5cd46d0aa0cb9bbe1.s3tc.ctex"]
 
 [params]
 
