@@ -384,7 +384,7 @@ collision_layer = 16
 [node name="City" type="Node3D" parent="Map"]
 
 [node name="Block" type="CSGBox3D" parent="Map/City"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0382, 5.53963, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0382, 5.49628, 11.7)
 material_override = SubResource("StandardMaterial3D_q1kd2")
 use_collision = true
 collision_layer = 16

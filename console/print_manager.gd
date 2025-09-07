@@ -1,5 +1,7 @@
 extends Node
 
+@export var log_to_file_enabled: bool = false
+
 var console: Console = null
 var log_file: FileAccess = null  # Declare a File variable
 
@@ -9,6 +11,9 @@ var log_dir := "res://console/log/"
 var log_file_path := ""
 
 func _ready():
+	if not log_to_file_enabled:
+		return
+
 	# Ensure the log directory exists.
 	DirAccess.make_dir_recursive_absolute(log_dir)
 
@@ -30,14 +35,15 @@ func _ready():
 
 func _notification(what):
 	if what == NOTIFICATION_PREDELETE:
-		if log_file:
+		if log_file and log_to_file_enabled:
 			log_file.close()
 
 func _print(message):
 	if console:
 		console.update_label(message)
 	print(message)
-	_log_to_file(message)  # Call the logging function
+	if log_to_file_enabled:
+		_log_to_file(message)  # Call the logging function
 
 func _log_to_file(message):
 	if log_file:
