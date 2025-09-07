@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://ohrbenccujps"]
+[gd_scene load_steps=75 format=3 uid="uid://ohrbenccujps"]
 
 [ext_resource type="Texture2D" uid="uid://b6bibwgbe2v0" path="res://skyboxes/Material.001_baseColor.jpeg" id="1_qkpxi"]
 [ext_resource type="PackedScene" uid="uid://bmqcv3j35sgff" path="res://scenes/testers.tscn" id="1_tbgi4"]
@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://bri3dgovnmskw" path="res://textures/concrete_slabs_04_1k/concrete_slabs_04_normal_gl_1k.png" id="35_2cjbq"]
 [ext_resource type="Texture2D" uid="uid://cs8qsvyfq85a7" path="res://textures/Road003_1K-PNG/Road003_1K-PNG_Roughness.png" id="35_fuf3a"]
 [ext_resource type="Texture2D" uid="uid://b4a27jpjkqa5j" path="res://textures/concrete_slabs_04_1k/concrete_slabs_04_roughness_1k.png" id="36_chjal"]
+[ext_resource type="ArrayMesh" uid="uid://dknoc1sn8ubef" path="res://models/Spaceships/OBJ/8.obj" id="49_ty1g6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dgi5k"]
 panorama = ExtResource("1_qkpxi")
@@ -62,7 +63,6 @@ sky_custom_fov = 115.7
 tonemap_mode = 2
 sdfgi_enabled = true
 glow_enabled = true
-fog_enabled = true
 fog_light_color = Color(0.836921, 0.85345, 0.87943, 1)
 fog_density = 0.005
 fog_sky_affect = 0.0
@@ -572,5 +572,9 @@ material = SubResource("StandardMaterial3D_pibwh")
 [node name="Path3D" type="Path3D" parent="Map/City/Road"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 curve = SubResource("Curve3D_j8jky")
+
+[node name="8" type="MeshInstance3D" parent="Map/City"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 10.2408, 149.78, 47.751)
+mesh = ExtResource("49_ty1g6")
 
 [editable path="Map/Testers"]
