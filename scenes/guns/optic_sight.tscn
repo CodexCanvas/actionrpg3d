@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr4mrr1uh57te"]
+
+[ext_resource type="PackedScene" uid="uid://vpneyq76yo7o" path="res://resources/meshes/optic_sight.gltf" id="1_3ru2h"]
+
+[node name="OpticSight" instance=ExtResource("1_3ru2h")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)

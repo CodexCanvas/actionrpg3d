@@ -37,7 +37,7 @@ grow_vertical = 2
 texture = ExtResource("3_nm2et")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Scaling" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -46,13 +46,13 @@ offset_left = -196.0
 offset_bottom = 60.0
 grow_horizontal = 0
 
-[node name="Scale" type="Label" parent="VBoxContainer"]
+[node name="Scale" type="Label" parent="Scaling"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Scale: 100%"
 
-[node name="Filter" type="Label" parent="VBoxContainer"]
+[node name="Filter" type="Label" parent="Scaling"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4

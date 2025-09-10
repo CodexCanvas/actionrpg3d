@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 PrintManager="*res://_globals/print_manager.gd"
 
-[display]
-
-window/size/mode=3
-
 [input]
 
 ui_left={

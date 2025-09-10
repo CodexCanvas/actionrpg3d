@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
-@onready var camera_mount: Node3D = $Camera_mount
+@onready var camera_mount: Node3D = $CameraMount
 @onready var animation_player: AnimationPlayer = $Visuals/mixamo_base/AnimationPlayer
 @onready var visuals: Node3D = $Visuals
 
@@ -10,7 +10,7 @@ var SPEED : int = 3
 const JUMP_VELOCITY : float = 6
 
 var walking_speed: int = 4
-var running_speed: int = 7
+var running_speed: int = 9
 
 var running: bool = false
 
@@ -28,7 +28,15 @@ func _ready():
 	Input.mouse_mode =Input.MOUSE_MODE_CAPTURED
 
 func _input(event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 	if event is InputEventMouseMotion:
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			return
 		# Always rotate the player (camera rig) and the camera pitch
 		rotate_y(deg_to_rad(-event.relative.x * sens_horizontal))
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))

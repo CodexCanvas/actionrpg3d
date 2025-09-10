@@ -9,8 +9,8 @@ var scale_factor = 1
 var filter_mode = Viewport.SCALING_3D_MODE_BILINEAR
 
 @onready var viewport = get_tree().root
-@onready var scale_label = $VBoxContainer/Scale
-@onready var filter_label = $VBoxContainer/Filter
+@onready var scale_label = $Scaling/Scale
+@onready var filter_label = $Scaling/Filter
 
 
 
