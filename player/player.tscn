@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=4 uid="uid://hu4u45g5avdy"]
+[gd_scene load_steps=19 format=4 uid="uid://hu4u45g5avdy"]
 
 [ext_resource type="Script" uid="uid://ddwemgoaj1gd8" path="res://player/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://dgdy0kftg1127" path="res://resources/meshes/pistol_complete.gltf" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://c5uc5vwuqvck5" path="res://scaling/hud.tscn" id="2_g2els"]
+[ext_resource type="Shape3D" uid="uid://014qibli8kqs" path="res://player/pusher.tres" id="2_yw30f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.4
@@ -3453,12 +3454,29 @@ _data = {
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 4368
-collision_priority = 2.0
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_g2els")
+
+[node name="Pusher" type="RigidBody3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+collision_mask = 256
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+sleeping = true
+lock_rotation = true
+freeze = true
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D/Pusher"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -1, 0)
+shape = ExtResource("2_yw30f")
+debug_color = Color(0.515779, 0.574862, 0.096511, 0.42)
 
 [node name="LedgeGrab" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45277, 0)
@@ -3944,11 +3962,12 @@ libraries = {
 playback_default_blend_time = 0.4
 
 [node name="CameraMount" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62874, -0.144889)
 
 [node name="Camera3D" type="Camera3D" parent="CameraMount"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, -0.063)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.121919, 0.0203294)
 fov = 100.0
+near = 0.2
 
 [node name="CameraRay" type="RayCast3D" parent="CameraMount/Camera3D"]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0)
@@ -3956,7 +3975,7 @@ target_position = Vector3(0, -100, 0)
 collision_mask = 4368
 
 [node name="PistolComplete" parent="CameraMount/Camera3D" instance=ExtResource("2_g1dw6")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1, -0.1, -0.2)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1, -0.1, -0.3)
 collision_layer = 0
 collision_mask = 4368
 sleeping = true

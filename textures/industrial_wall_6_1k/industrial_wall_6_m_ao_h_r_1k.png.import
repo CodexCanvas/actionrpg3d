@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4611dj4grfo0"
-path.s3tc="res://.godot/imported/metal_01_roughness_1k.png-99c63f652677a28aaa645b156b4479ed.s3tc.ctex"
+uid="uid://bhpfmn5f2rc4i"
+path.s3tc="res://.godot/imported/industrial_wall_6_m_ao_h_r_1k.png-e194832df251b2f02459a4f22a681c42.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/metal_01_1k/metal_01_roughness_1k.png"
-dest_files=["res://.godot/imported/metal_01_roughness_1k.png-99c63f652677a28aaa645b156b4479ed.s3tc.ctex"]
+source_file="res://textures/industrial_wall_6_1k/industrial_wall_6_m_ao_h_r_1k.png"
+dest_files=["res://.godot/imported/industrial_wall_6_m_ao_h_r_1k.png-e194832df251b2f02459a4f22a681c42.s3tc.ctex"]
 
 [params]
 

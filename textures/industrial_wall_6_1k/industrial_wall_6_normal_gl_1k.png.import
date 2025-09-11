@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4611dj4grfo0"
-path.s3tc="res://.godot/imported/metal_01_roughness_1k.png-99c63f652677a28aaa645b156b4479ed.s3tc.ctex"
+uid="uid://d0rr251y6fwwr"
+path.s3tc="res://.godot/imported/industrial_wall_6_normal_gl_1k.png-ee3136c7aa553b3918f1a02a8d01c160.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/metal_01_1k/metal_01_roughness_1k.png"
-dest_files=["res://.godot/imported/metal_01_roughness_1k.png-99c63f652677a28aaa645b156b4479ed.s3tc.ctex"]
+source_file="res://textures/industrial_wall_6_1k/industrial_wall_6_normal_gl_1k.png"
+dest_files=["res://.godot/imported/industrial_wall_6_normal_gl_1k.png-ee3136c7aa553b3918f1a02a8d01c160.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://textures/industrial_wall_6_1k/industrial_wall_6_normal_gl_1k.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
