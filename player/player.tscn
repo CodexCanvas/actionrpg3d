@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://hu4u45g5avdy"]
+[gd_scene load_steps=23 format=4 uid="uid://hu4u45g5avdy"]
 
 [ext_resource type="Script" uid="uid://ddwemgoaj1gd8" path="res://player/player.gd" id="1_g2els"]
-[ext_resource type="PackedScene" uid="uid://dgdy0kftg1127" path="res://resources/meshes/pistol_complete.gltf" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://c5uc5vwuqvck5" path="res://scaling/hud.tscn" id="2_g2els"]
 [ext_resource type="Shape3D" uid="uid://014qibli8kqs" path="res://player/pusher.tres" id="2_yw30f"]
+[ext_resource type="PackedScene" uid="uid://d14ljguoc18s5" path="res://scenes/guns/silverqueen.tscn" id="3_yw30f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.4
@@ -3452,6 +3452,22 @@ _data = {
 &"walking": SubResource("Animation_7lqus")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yw30f"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.851301, 0.000395827, 0.811432, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_qjkh3"]
+material = SubResource("StandardMaterial3D_yw30f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k8r"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_boad6"]
+material = SubResource("StandardMaterial3D_g6k8r")
+
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 4368
 script = ExtResource("1_g2els")
@@ -3974,12 +3990,12 @@ transform = Transform3D(0.1, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0,
 target_position = Vector3(0, -100, 0)
 collision_mask = 4368
 
-[node name="PistolComplete" parent="CameraMount/Camera3D" instance=ExtResource("2_g1dw6")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1, -0.1, -0.3)
-collision_layer = 0
-collision_mask = 4368
-sleeping = true
-freeze = true
+[node name="Silverqueen" parent="CameraMount/Camera3D" instance=ExtResource("3_yw30f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153173, -0.172367, -0.249717)
+
+[node name="Visualizer" type="MeshInstance3D" parent="CameraMount/Camera3D"]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)
+mesh = SubResource("PrismMesh_qjkh3")
 
 [node name="HUD" parent="CameraMount" instance=ExtResource("2_g2els")]
 
@@ -3989,6 +4005,10 @@ light_energy = 3.0
 shadow_enabled = true
 spot_range = 40.0
 spot_angle = 25.0
+
+[node name="Visualizer" type="MeshInstance3D" parent="CameraMount"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("SphereMesh_boad6")
 
 [node name="BottomRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.2, 0)
